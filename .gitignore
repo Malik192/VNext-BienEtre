@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs/VNext.BienEtreAuTravail/v16/Server/sqlite3
+/.vs/VNext.BienEtreAuTravail
+/VNext.BienEtreAuTravail.BLL/bin/Debug/netcoreapp3.0
+/VNext.BienEtreAuTravail.BLL/obj/Debug/netcoreapp3.0
+/VNext.BienEtreAuTravail.BLL/obj
+/VNext.BienEtreAuTravail.DAL/bin/Debug/netcoreapp3.0
+/VNext.BienEtreAuTravail.DAL/obj/Debug/netcoreapp3.0
+/VNext.BienEtreAuTravail.DAL/obj
+/VNext.BienEtreAuTravail.Database/bin/Debug
+/VNext.BienEtreAuTravail.Database/obj/Debug

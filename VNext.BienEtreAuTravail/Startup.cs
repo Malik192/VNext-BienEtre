@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VNext.BienEtreAuTravail.BLL.Interfaces;
+using VNext.BienEtreAuTravail.BLL.Services;
+using VNext.BienEtreAuTravail.DAL.Interfaces;
+using VNext.BienEtreAuTravail.DAL.Models.Settings;
+using VNext.BienEtreAuTravail.DAL.Repositories;
 using VueCliMiddleware;
 
 namespace VNext.BienEtreAuTravail
@@ -29,6 +34,11 @@ namespace VNext.BienEtreAuTravail
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddOptions();
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

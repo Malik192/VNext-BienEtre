@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNext.BienEtreAuTravail", "VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.csproj", "{A3D8A48E-924E-4744-81F0-54BE67D04AE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNext.BienEtreAuTravail.Web", "VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.Web.csproj", "{A3D8A48E-924E-4744-81F0-54BE67D04AE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNext.BienEtreAuTravail.BLL", "VNext.BienEtreAuTravail.BLL\VNext.BienEtreAuTravail.BLL.csproj", "{6D48DE23-FAD8-43CB-A186-6DF87DDB2C95}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNext.BienEtreAuTravail.DAL", "VNext.BienEtreAuTravail.DAL\VNext.BienEtreAuTravail.DAL.csproj", "{A017F371-CB11-44EE-856B-1AC5AE00952F}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VNext.BienEtreAuTravail.Database", "VNext.BienEtreAuTravail.Database\VNext.BienEtreAuTravail.Database.sqlproj", "{37103140-F64B-41F3-93CB-B4B023D163AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,20 @@ Global
 		{A3D8A48E-924E-4744-81F0-54BE67D04AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3D8A48E-924E-4744-81F0-54BE67D04AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3D8A48E-924E-4744-81F0-54BE67D04AE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D48DE23-FAD8-43CB-A186-6DF87DDB2C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D48DE23-FAD8-43CB-A186-6DF87DDB2C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D48DE23-FAD8-43CB-A186-6DF87DDB2C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D48DE23-FAD8-43CB-A186-6DF87DDB2C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A017F371-CB11-44EE-856B-1AC5AE00952F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A017F371-CB11-44EE-856B-1AC5AE00952F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A017F371-CB11-44EE-856B-1AC5AE00952F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A017F371-CB11-44EE-856B-1AC5AE00952F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37103140-F64B-41F3-93CB-B4B023D163AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37103140-F64B-41F3-93CB-B4B023D163AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37103140-F64B-41F3-93CB-B4B023D163AD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{37103140-F64B-41F3-93CB-B4B023D163AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37103140-F64B-41F3-93CB-B4B023D163AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37103140-F64B-41F3-93CB-B4B023D163AD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
