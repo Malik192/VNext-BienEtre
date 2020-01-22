@@ -35,8 +35,10 @@ namespace VNext.BienEtreAuTravail
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddOptions();
+            // DB
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
 
+            // Dependency injection 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
         }

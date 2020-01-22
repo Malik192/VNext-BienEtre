@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VNext.BienEtreAuTravail.BLL.Interfaces;
-using VNext.BienEtreAuTravail.BLL.Services;
 using VNext.BienEtreAuTravail.DAL.Models.Database;
 
 namespace VNext.BienEtreAuTravail.Web.Controllers
@@ -19,36 +18,41 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
         {
             _userService = userService;
         }
-        // GET: api/User
+        // GET: api/UserController
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<Employee> Get()
         {
-            return _userService.GetUsers();
+            return _userService.GetAllUsers();
         }
 
-        // GET: api/User/5
+        // GET: api/UserController/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public IEnumerable<Employee> Get(int id)
         {
-            return "value";
+            return _userService.DisplayById(id);
         }
 
-        // POST: api/User
+        // POST: api/UserController
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Employee value)
         {
+
+            _userService.AddUser(value);
         }
 
-        // PUT: api/User/5
+        // PUT: api/UserController/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            _userService.UpdateUser(id, value);
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/UserController/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IEnumerable<Employee> Delete(int id)
         {
+           
+           return _userService.DeleteEmp(id);
         }
     }
 }

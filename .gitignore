@@ -12,3 +12,5 @@
 /VNext.BienEtreAuTravail.DAL/obj
 /VNext.BienEtreAuTravail.Database/bin/Debug
 /VNext.BienEtreAuTravail.Database/obj/Debug
+VNext.BienEtreAuTravail.Database/VNext.BienEtreAuTravail.Database.dbmdl
+VNext.BienEtreAuTravail.Database/VNext.BienEtreAuTravail.Database.jfm

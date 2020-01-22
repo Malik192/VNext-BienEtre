@@ -1,0 +1,11 @@
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\bin\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.deps.json
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\bin\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.dll
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\obj\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.csprojAssemblyReference.cache
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\obj\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.AssemblyInfoInputs.cache
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\obj\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.AssemblyInfo.cs
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\bin\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.pdb
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\bin\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DAL.dll
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\bin\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DAL.pdb
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\obj\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.csproj.CopyComplete
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\obj\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.dll
+C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VNext.BienEtreAuTravail.DTO\obj\Debug\netcoreapp3.0\VNext.BienEtreAuTravail.DTO.pdb
