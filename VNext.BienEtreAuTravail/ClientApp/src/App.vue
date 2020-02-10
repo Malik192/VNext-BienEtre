@@ -1,29 +1,43 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+ 
+        <v-app id="app">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+
+        
+            <v-content>
+              <Navbar></Navbar>
+            
+                <Quotes></Quotes>
+            </v-content>
+
+        </v-app>
+      
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
+import Auth from './components/Auth.vue';
+import Navbar from './components/Navbar.vue';
+import Mood from './components/Mood.vue';
+import Quotes from './components/Quotes.vue';
+
+
 
 export default Vue.extend({
-  name: 'app',
+  name: 'App',
+
   components: {
-    HelloWorld,
+      HelloWorld,
+      Auth,
+      Navbar,
+      Mood,
+      Quotes,
   },
+
+  data: () => ({
+    //
+  }),
 });
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
