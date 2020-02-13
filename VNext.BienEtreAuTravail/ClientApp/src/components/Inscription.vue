@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container style="padding:40px">
     <v-layout justify-center>
-      <v-card color="#B2D3A3" flat shaped elevation="12" height="300">
+      <v-card color="#B2D3A3" flat shaped elevation="12" height=auto>
         <v-toolbar color="#B2D3A3" flat>
           <v-spacer></v-spacer>
           <v-toolbar-title>INSCRITPTION</v-toolbar-title>
