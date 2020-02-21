@@ -18,7 +18,9 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
+           
         }
+
         // GET: api/UserController
         [HttpGet]
         public IEnumerable<Employee> Get()
@@ -41,6 +43,14 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
             _userService.AddUser(value);
         }
 
+       
+        [HttpPost("/api/Auth")]
+       public void Authentification([FromBody] Employee value)
+        {
+
+            _userService.Authentification(value.Pseudo,value.Password);
+        }
+ 
         // PUT: api/UserController/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

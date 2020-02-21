@@ -11,6 +11,7 @@ namespace VNext.BienEtreAuTravail.DAL.Models.Database
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdEmployee { get; set; }
         public string Pseudo { get; set; }
+        public string Password { get; set; }
         public bool IsDepartmentManager { get; set; }
         public DateTime Created_at { get; set; }
         public DateTime Updated_at { get; set; }
@@ -22,7 +23,7 @@ namespace VNext.BienEtreAuTravail.DAL.Models.Database
         
         public Employee()
         {
-            this.Created_at = System.DateTime.Now;
+            this.Created_at = DateTime.Now;
 
         }
     }

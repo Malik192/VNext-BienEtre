@@ -86,6 +86,9 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
                     b.Property<bool>("IsDepartmentManager")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Pseudo")
                         .HasColumnType("nvarchar(max)");
 
@@ -134,7 +137,7 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
 
                     b.HasKey("MoodId");
 
-                    b.ToTable("Humeur");
+                    b.ToTable("Moods");
                 });
 
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.Commentaire", b =>

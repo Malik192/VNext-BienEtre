@@ -13,7 +13,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
     public class UserService : IUserService
     {
         protected readonly IUserRepository _userRepository;
-
+        protected SaltedPassword passwordHash = new SaltedPassword();
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -21,7 +21,40 @@ namespace VNext.BienEtreAuTravail.BLL.Services
 
         public void AddUser(Employee user)
         {
-            _userRepository.AddUser(user);
+
+            if (user.Password !=null)
+            {
+                user.Password = passwordHash.CreateHash(user.Password);
+                
+
+                _userRepository.AddUser(user);
+            }
+          
+        }
+        public bool Authentification(string pseudo,string password)
+        {
+            bool trues = false;
+            foreach (var item in GetAllUsers())
+            {
+                try
+                {
+
+                    if (pseudo == item.Pseudo)
+                    {
+
+                        trues = passwordHash.ValidatePassword(password, item.Password);
+
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.StackTrace);
+                        
+                }
+
+            }
+            return trues;
         }
 
         public void UpdateUser(int id, string value)

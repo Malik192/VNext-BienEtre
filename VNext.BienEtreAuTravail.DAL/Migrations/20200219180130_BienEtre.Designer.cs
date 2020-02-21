@@ -10,8 +10,8 @@ using VNext.BienEtreAuTravail.DAL.Context;
 namespace VNext.BienEtreAuTravail.DAL.Migrations
 {
     [DbContext(typeof(WorkContext))]
-    [Migration("20200121140635_VnextTab")]
-    partial class VnextTab
+    [Migration("20200219180130_BienEtre")]
+    partial class BienEtre
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,6 +88,9 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
                     b.Property<bool>("IsDepartmentManager")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Pseudo")
                         .HasColumnType("nvarchar(max)");
 
@@ -136,7 +139,7 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
 
                     b.HasKey("MoodId");
 
-                    b.ToTable("Humeur");
+                    b.ToTable("Moods");
                 });
 
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.Commentaire", b =>

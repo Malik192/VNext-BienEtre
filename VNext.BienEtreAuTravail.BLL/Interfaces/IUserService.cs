@@ -12,6 +12,7 @@ namespace VNext.BienEtreAuTravail.BLL.Interfaces
         void UpdateUser(int id, string value);
         void AddUser(Employee user);
         IEnumerable<Employee> GetAllUsers();
+        bool Authentification(string pseudo, string password);
 
         IEnumerable<Employee> DisplayById(int employee);
         

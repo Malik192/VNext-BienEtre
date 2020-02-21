@@ -19,7 +19,7 @@
                             </v-card-actions>
                             <v-card-text>
 
-                                <div class="subheading">{{ post.idEmployee }}</div>
+                              
                                 <div class="subheading">{{ post.pseudo }}</div>
                             </v-card-text>
 

@@ -13,7 +13,7 @@ namespace VNext.BienEtreAuTravail.DAL.Interfaces
            void AddUser(Employee nom);
            void UpdateUser(int id,string value);
            IEnumerable<Employee> GetAllUsers();
-           IEnumerable<Employee> DeleteEmp(int person);
+        IEnumerable<Employee> DeleteEmp(int person);
           
            IEnumerable<Employee> DisplayById();
 
