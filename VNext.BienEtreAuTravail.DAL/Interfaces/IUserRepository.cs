@@ -11,7 +11,7 @@ namespace VNext.BienEtreAuTravail.DAL.Interfaces
         
            IEnumerable<Employee> GetUsers();
            void AddUser(Employee nom);
-           void UpdateUser(int id,string value);
+           void UpdateUser(Employee value);
            IEnumerable<Employee> GetAllUsers();
         IEnumerable<Employee> DeleteEmp(int person);
           

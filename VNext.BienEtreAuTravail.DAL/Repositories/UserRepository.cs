@@ -49,18 +49,16 @@ namespace VNext.BienEtreAuTravail.DAL.Repositories
 
         }
 
-        public void UpdateUser(int id, string value)
+        public void UpdateUser(Employee value)
         {
             using (var context = new WorkContext())
             {
-                var user = context.Employees.First(a => a.IdEmployee == id);
-                user.Pseudo = value;
-                context.SaveChanges();
-
-            }
-
-        }
-
+                var user = context.Employees.First(a => a.IdEmployee == value.IdEmployee);
+                user.Pseudo = value.Pseudo;
+                user.Password = value.Password;
+                context.SaveChanges(); 
+            } 
+        } 
         public IEnumerable<Employee> DisplayById()
         {
             using (var context = new WorkContext())
@@ -85,24 +83,18 @@ namespace VNext.BienEtreAuTravail.DAL.Repositories
             using (var context = new WorkContext())
             {
                 try
-                {
-
+                { 
                     var author = context.Employees.Single(a => a.IdEmployee == person);
                     context.Remove(author);
                     context.SaveChanges();
-                    return context.Employees.ToList();
-
+                    return context.Employees.ToList(); 
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                     throw;
                 }
             }
         }
-
-       
-
         //var result = new List<User>();
         //result.Add(new User()
         //{

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using VNext.BienEtreAuTravail.BLL.Interfaces;
 using VNext.BienEtreAuTravail.DAL.Interfaces;
 using VNext.BienEtreAuTravail.DAL.Models.Database;
@@ -12,6 +14,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
 {
     public class UserService : IUserService
     {
+       
         protected readonly IUserRepository _userRepository;
         protected SaltedPassword passwordHash = new SaltedPassword();
         public UserService(IUserRepository userRepository)
@@ -33,7 +36,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
         }
         public bool Authentification(string pseudo,string password)
         {
-            bool trues = false;
+            bool validation = false;
             foreach (var item in GetAllUsers())
             {
                 try
@@ -42,7 +45,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
                     if (pseudo == item.Pseudo)
                     {
 
-                        trues = passwordHash.ValidatePassword(password, item.Password);
+                        validation = passwordHash.ValidatePassword(password, item.Password);
 
                     }
                 }
@@ -54,12 +57,26 @@ namespace VNext.BienEtreAuTravail.BLL.Services
                 }
 
             }
-            return trues;
+
+            return validation;
         }
 
-        public void UpdateUser(int id, string value)
+
+        public ClaimsPrincipal GetPrincipal(Employee value, string authScheme)
         {
-            _userRepository.UpdateUser(id, value);
+            // Here we are just creating a Principal for any user, 
+            // using its email and a hardcoded “User” role
+            IEnumerable<Claim> claims = new List<Claim>
+      {
+          new Claim(ClaimTypes.Name, value.Pseudo),
+          new Claim(ClaimTypes.Email, value.Password),
+      };
+            return new ClaimsPrincipal(new ClaimsIdentity(claims, authScheme));
+        }
+
+        public void UpdateUser(Employee value)
+        {
+            _userRepository.UpdateUser(value);
         }
         public IEnumerable<Employee> DeleteEmp(int person) {
             return _userRepository.DeleteEmp(person);
@@ -79,6 +96,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
 
         public IEnumerable<Employee> GetAllUsers()
         {
+            Console.WriteLine( "Liste des utilisateurs");
            return _userRepository.GetAllUsers();
         }
 
@@ -86,6 +104,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
         {
             return _userRepository.GetUsers();
         }
-       
+
+        
     }
 }

@@ -7,8 +7,6 @@ namespace VNext.BienEtreAuTravail.BLL
     public class SaltedPassword
     {
 
-       
-        
         public const int SALT_BYTE_SIZE = 24;
         public const int HASH_BYTE_SIZE = 24;
         public int PBKDF2_ITERATIONS = DateTime.Now.Year;

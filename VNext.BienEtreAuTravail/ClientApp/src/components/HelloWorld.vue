@@ -60,6 +60,7 @@ please join our online
 </template>
 
 <script lang="ts">
+/* tslint:disable */
 import Vue from "vue";
 
 export default Vue.extend({
@@ -118,4 +119,5 @@ export default Vue.extend({
     ]
   })
 });
+/* tslint:disable */
 </script>

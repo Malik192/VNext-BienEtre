@@ -7,18 +7,25 @@
       >Quelle est votre humeur du jour ?</p>
     </v-content>
     <v-spacer></v-spacer>
-    <v-content style="padding: 20px 200px 0px;">
+    <v-content >
       <v-layout justify-center>
         <v-card elevation="0" >
           <v-row align="center" >
             <v-col cols="4" sm="4" lg="4">
+              <router-link  to="/Quotes">
               <v-img class="float-sm-left" src="@/assets/004-smile.png" style="width:250px" ></v-img>
+              </router-link>
             </v-col>
-            <v-col cols="4" sm="4">
+            
+            <v-col cols="4" sm="4" xs="4">
+             <router-link  to="/Quotes">
               <v-img class="float-sm-left" src="@/assets/013-meh.png" style="width:250px"></v-img>
+             </router-link>
             </v-col>
             <v-col cols="4" sm="4">
+               <router-link  to="/Quotes">
               <v-img class="float-sm-left" src="@/assets/009-sad-1.png" style="width:250px"></v-img>
+               </router-link>
             </v-col>
           </v-row>
         </v-card>
