@@ -1,8 +1,10 @@
 <template >
+
   <div class="App">
     <h1 class="subheading grey--text">Team members</h1>
     <v-container class="my-5">
       <v-content>
+    
         <v-layout row wrap>
           <v-flex xs12 sm6 md4 lg3 v-for="(post,i) in posts" v-model="posts" v-bind:key="i">
             <v-card flat class="text-xs-center ma-3" elevation="5" v-bind:key="componentKey">
@@ -18,8 +20,9 @@
                   <v-icon medium left color="#1DB954">cloud_upload</v-icon>
                 </v-btn>
               </v-card-actions>
+              
               <v-card-text>
-                <div class="subheading">{{ post.IdEmployee }}</div>
+                
                 <div class="subheading">{{ post.Pseudo }} + {{i}}</div>
               </v-card-text>
 
@@ -66,11 +69,9 @@
                               label="Password"
                               v-model="password"
                               :rules="[rules.required, rules.min]"
-                             
                               :type="show1 ? 'text' : 'password'"
                               color="#4d8c05"
                               height="40"
-                           
                               prepend-icon="lock"
                               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                               @click:append="show1 = !show1"
@@ -114,31 +115,35 @@
               </v-card-actions>
             </v-card>
           </v-flex>
-         
         </v-layout>
       </v-content>
     </v-container>
   </div>
 </template>
 
-<script lang="ts">
+<script src="./Users.ts"  lang="ts">
 import Vue from "vue";
 //import {repositoryFactory} from '@/repositories/RepositoryFactory'
 //var PostsRepository=repositoryFactory.get('users')
-import axios from "axios";
+import axios from "axios"; 
+
+
 
 export default Vue.extend({
+  
   name: "App",
+  
   data() {
     return {
       id: 0,
-      posts: [],
+     posts:[],
       errors: [],
       url: `https://localhost:44380/api/User`,
       login: "",
       password: "",
-      componentKey: 0,
-
+      componentKey: 0, 
+      
+    
       dialog: false,
       show1: false,
       rules: {
@@ -150,17 +155,22 @@ export default Vue.extend({
       snackbar: false
     };
   },
-
-  mounted() {
-    axios
-      .get(this.url)
-      .then(response => {
-        this.posts = response.data;
-      })
-      .catch(e => {
-        this.errors.push();
-      });
-  },
+  
+  /*
+ mounted(){
+ axios
+        .get(this.url)
+        .then(response => {
+          this.posts = response.data;
+        })
+        .catch(e => {
+          this.errors.push();
+        });
+ },
+ */
+updated(){
+this.posts= this.$store.getters
+},
   watch: {
     componentKey: function() {
       axios
@@ -173,6 +183,7 @@ export default Vue.extend({
         });
     }
   },
+
   methods: {
     openDialog(value: any) {
       this.id = value.IdEmployee;
@@ -190,16 +201,14 @@ export default Vue.extend({
           this.componentKey++;
           this.dialog = false;
           this.text = "Modification enregistrée ";
-          this.snackbar = true;
-
+          this.snackbar = true; 
           //    resolve(resp)
-        })
-
+        }) 
         .catch(function(error) {
           console.log(error);
         });
     },
-    
+
     supprimer: function(value: any, i: number) {
       //      this.$emit(`update:${key}`, value);
 

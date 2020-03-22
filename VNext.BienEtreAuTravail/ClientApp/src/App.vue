@@ -3,7 +3,7 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" />
 
     <v-content>
-     <Navbar></Navbar>
+      <Navbar></Navbar>
       <router-view></router-view>
     </v-content>
   </v-app>
@@ -11,14 +11,14 @@
 
 <script lang="ts">
 /* tslint:disable */
-import Vue from 'vue';
-import Navbar from "@/components/Navbar.vue";
+import Vue from "vue";
+import Navbar from "./components/Navbar";
 
-export default Vue.extend({
-  name: 'App',
+export default ({
+  name: "App",
 
   components: {
-    Navbar,
+    Navbar
   }
 });
 /* tslint:disable */

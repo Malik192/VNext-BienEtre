@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
 using VNext.BienEtreAuTravail.DAL.Models.Database;
+using VNext.BienEtreAuTravail.DAL.Models.DTO;
 using VNext.BienEtreAuTravail.DAL.Models.Settings;
 using VNext.BienEtreAuTravail.DAL.Repositories;
 
@@ -14,6 +15,7 @@ namespace VNext.BienEtreAuTravail.DAL.Context
 
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeDTO> EmployeesDto { get; set; }
         public DbSet<Commentaire> Commentaire { get; set; }
         public DbSet<Mood> Moods { get; set; }
         public DbSet<HumeurEmployee> HumeurEmp { get; set; }

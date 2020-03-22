@@ -3,10 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VNext.BienEtreAuTravail.DAL\VNext.BienEtreAuTravail.DAL.csproj" />
   </ItemGroup>

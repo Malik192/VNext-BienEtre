@@ -1,19 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using VNext.BienEtreAuTravail.DAL.Interfaces;
 using VNext.BienEtreAuTravail.DAL.Models.Database;
 using VNext.BienEtreAuTravail.DAL.Models.Settings;
-using AutoMapper;
-using Dapper;
-using System.Data.SqlClient;
-using System.Data;
-using Dapper.Contrib.Extensions;
 using System.Linq;
 using VNext.BienEtreAuTravail.DAL.Context;
-using Microsoft.EntityFrameworkCore;
-using VNext.BienEtreAuTravail.DAL.Models.DTO;
 
 namespace VNext.BienEtreAuTravail.DAL.Repositories
 {
@@ -59,17 +51,7 @@ namespace VNext.BienEtreAuTravail.DAL.Repositories
                 context.SaveChanges(); 
             } 
         } 
-        public IEnumerable<Employee> DisplayById()
-        {
-            using (var context = new WorkContext())
-            {
-
-                return context.Employees.ToList();
-
-            }
-        }
-
-
+       
         public IEnumerable<Employee> GetAllUsers()
         {
             using (var context = new WorkContext())

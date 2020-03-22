@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using VNext.BienEtreAuTravail.BLL.Interfaces;
 using VNext.BienEtreAuTravail.DAL.Models.Database;
+using VNext.BienEtreAuTravail.DAL.Models.DTO;
 
 namespace VNext.BienEtreAuTravail.Web.Controllers
 {
@@ -18,22 +22,25 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
     public class UserController : ControllerBase
     {
         protected readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IMapper _mapper;
+
+        public UserController(IUserService userService,IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
            
         }
-
-        // GET: api/UserController
         [HttpGet]
-        public IEnumerable<Employee> Get()
+        public IEnumerable<EmployeeDTO> Get()
         {
-            return _userService.GetAllUsers();
-        }
+            var employee = _userService.GetAllUsers();
+            return MapEmp(employee);
 
+        }
+        
         // GET: api/UserController/5
         [HttpGet("{id}", Name = "Get")]
-        public IEnumerable<Employee> Get(int id)
+        public Employee Get(int id)
         {
             return _userService.DisplayById(id);
         }
@@ -61,19 +68,29 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
         [HttpPost("/api/Auths")]
       
 
-        public async Task<string> Authentication(Employee value)
+        public async Task<ICollection<StringValues>> Authentication(Employee value)
         {
             if (!_userService.Authentification(value.Pseudo, value.Password))
             {
-                return "Login failed";
+                return null;
             };
             var principal =_userService.GetPrincipal(value, Startup.CookieAuthScheme);
             await HttpContext.SignInAsync(Startup.CookieAuthScheme, principal);
-            Console.WriteLine(Startup.CookieAuthScheme);
-            return this.User?.Identity.Name;
+            ICollection<StringValues> Cookie = HttpContext.Response.Headers.Values;
+           
+
+            return Cookie;
 
         }
-       
+
+        [HttpPost("/api/SignOut")]
+        public async void SignOut()
+        {
+            await HttpContext.SignOutAsync(Startup.CookieAuthScheme);
+            
+
+
+        }
 
         // PUT: api/UserController/5
         [HttpPut("{id}")] 
@@ -85,10 +102,15 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
 
         // DELETE: api/UserController/5
         [HttpDelete("{id}")]
-        public IEnumerable<Employee> Delete(int id)
+        public IEnumerable<EmployeeDTO> Delete(int id)
         {
-           
-           return _userService.DeleteEmp(id);
+
+            var employee = _userService.DeleteEmp(id);
+            return MapEmp(employee);
+        }
+        public IEnumerable<EmployeeDTO> MapEmp(IEnumerable<Employee> emp)
+        {
+            return _mapper.Map<IEnumerable<EmployeeDTO>>(emp);
         }
     }
 }

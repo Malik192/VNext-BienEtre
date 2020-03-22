@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using VNext.BienEtreAuTravail.BLL.Interfaces;
 using VNext.BienEtreAuTravail.DAL.Interfaces;
 using VNext.BienEtreAuTravail.DAL.Models.Database;
-using VNext.BienEtreAuTravail.DAL.Models.DTO;
-using VNext.BienEtreAuTravail.DAL.Repositories;
 
 namespace VNext.BienEtreAuTravail.BLL.Services
 {
@@ -21,6 +17,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
         {
             _userRepository = userRepository;
         }
+
 
         public void AddUser(Employee user)
         {
@@ -37,7 +34,8 @@ namespace VNext.BienEtreAuTravail.BLL.Services
         public bool Authentification(string pseudo,string password)
         {
             bool validation = false;
-            foreach (var item in GetAllUsers())
+            var emp = _userRepository.GetAllUsers();
+            foreach (var item in emp)
             {
                 try
                 {
@@ -45,7 +43,7 @@ namespace VNext.BienEtreAuTravail.BLL.Services
                     if (pseudo == item.Pseudo)
                     {
 
-                        validation = passwordHash.ValidatePassword(password, item.Password);
+                    validation = passwordHash.ValidatePassword(password, item.Password);
 
                     }
                 }
@@ -64,12 +62,11 @@ namespace VNext.BienEtreAuTravail.BLL.Services
 
         public ClaimsPrincipal GetPrincipal(Employee value, string authScheme)
         {
-            // Here we are just creating a Principal for any user, 
-            // using its email and a hardcoded “User” role
+           
             IEnumerable<Claim> claims = new List<Claim>
       {
           new Claim(ClaimTypes.Name, value.Pseudo),
-          new Claim(ClaimTypes.Email, value.Password),
+          new Claim(ClaimTypes.Authentication, value.Password),
       };
             return new ClaimsPrincipal(new ClaimsIdentity(claims, authScheme));
         }
@@ -83,23 +80,37 @@ namespace VNext.BienEtreAuTravail.BLL.Services
         }
         //
       
-        public IEnumerable<Employee> DisplayById(int employee)
+        public Employee DisplayById(int employee)
         {
-            var person = _userRepository.DisplayById();
-
+            var person = _userRepository.GetAllUsers();
+            Employee Emp =null;
             var EmployeeById = from E in person
                                        where E.IdEmployee == employee
                                        select E;
-            return EmployeeById;
+            foreach (var item in EmployeeById)
+            {
+                Emp = item;
+            }
+            return Emp;
         }
-        
 
         public IEnumerable<Employee> GetAllUsers()
-        {
-            Console.WriteLine( "Liste des utilisateurs");
-           return _userRepository.GetAllUsers();
-        }
 
+        {
+
+            return _userRepository.GetAllUsers();
+
+        }
+       /* public IEnumerable<EmployeeDTO> GetAllUsers()
+        {
+            
+           var emp= _userRepository.GetAllUsers();
+            var MapEntities = _mapper.Map <IEnumerable<EmployeeDTO>>(emp);
+            var e = MapEntities.ToList();
+            
+            return MapEntities;
+        }
+        */
         public IEnumerable<Employee> GetUsers()
         {
             return _userRepository.GetUsers();

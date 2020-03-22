@@ -1,9 +1,7 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +11,7 @@ using VNext.BienEtreAuTravail.BLL.Services;
 using VNext.BienEtreAuTravail.DAL.Interfaces;
 using VNext.BienEtreAuTravail.DAL.Models.Settings;
 using VNext.BienEtreAuTravail.DAL.Repositories;
+using VNext.BienEtreAuTravail.Web;
 using VueCliMiddleware;
 
 namespace VNext.BienEtreAuTravail
@@ -31,7 +30,7 @@ namespace VNext.BienEtreAuTravail
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+          
             //Allow cors origin
             services.AddCors(options =>
             {
@@ -48,16 +47,17 @@ namespace VNext.BienEtreAuTravail
 
             // Add Authentication services, using 
             services.AddAuthentication(CookieAuthScheme)
-                // Now add and configure cookie authentication
+                
                 .AddCookie(CookieAuthScheme, options =>
                 {
                     // Set the cookie name (optional)
                     options.Cookie.Name = "Vnext.AuthCookie";
+                   
                     // Set the samesite cookie parameter as none, 
                     // otherwise it won’t work with clients on uses a different domain wont work!
                     options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None;
-                    // Simply return 401 responses when authentication fails 
-                    // as opposed to the default of redirecting to the login page
+                    //  return 401 responses when authentication fails 
+                   
                     options.Events = new CookieAuthenticationEvents
                     {
                         OnRedirectToLogin = redirectContext =>
@@ -67,6 +67,14 @@ namespace VNext.BienEtreAuTravail
                         }
                     };
                 });
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddControllersWithViews();
             services.AddControllers().AddJsonOptions(options =>
@@ -80,6 +88,8 @@ namespace VNext.BienEtreAuTravail
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+          //  services.AddAutoMapper();
+            
             services.AddOptions();
             // DB
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));

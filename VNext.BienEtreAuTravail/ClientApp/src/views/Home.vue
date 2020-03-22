@@ -1,4 +1,5 @@
 <template>
+
   <div class="home">
     <div class="banner">
       
@@ -7,23 +8,51 @@
       <div class="row">
          <v-row justify="center">
   </v-row>
-
-          <SignIn></SignIn>
-        <router-view></router-view>
+{{Tokenvalue}}
+          <SignIn ></SignIn>
+           
+        <router-view >
+        
+        </router-view>
+    
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script >
+
 // @ is an alias to /src 
 import SignIn from '@/views/SignIn.vue' 
 
 export default {
   name: "home",
   components: {
-    SignIn, 
+    SignIn
   
-  }
+  
+  },
+   data() {
+    return {
+   
+      
+      text: "",
+
+      snackbar: false
+    };
+  },
+  computed: {
+
+    Tokenvalue() {
+
+      return   this.$cookies.get("Vnext");
+
+    },
+
+    
+  },
+
+
 };
+
 </script>

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using VNext.BienEtreAuTravail.DAL.Models.Database;
-using VNext.BienEtreAuTravail.DAL.Models.DTO;
 
 namespace VNext.BienEtreAuTravail.DAL.Interfaces
 {
@@ -13,9 +10,9 @@ namespace VNext.BienEtreAuTravail.DAL.Interfaces
            void AddUser(Employee nom);
            void UpdateUser(Employee value);
            IEnumerable<Employee> GetAllUsers();
-        IEnumerable<Employee> DeleteEmp(int person);
+           IEnumerable<Employee> DeleteEmp(int person);
           
-           IEnumerable<Employee> DisplayById();
+         
 
 
     }

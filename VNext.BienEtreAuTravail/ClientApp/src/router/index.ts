@@ -27,7 +27,8 @@ const routes = [
     {
         path: '/Mood',
         name: 'mood',
-        component: Mood,
+        component: () => import(/* webpackChunkName: "about" */ '../views/Mood.vue'),
+      
     },
     {
       path: '/signup',
