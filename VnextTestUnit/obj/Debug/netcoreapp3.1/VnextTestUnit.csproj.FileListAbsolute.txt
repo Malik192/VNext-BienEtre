@@ -139,12 +139,8 @@ C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\obj\Debu
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\obj\Debug\netcoreapp3.1\VnextTestUnit.csproj.CopyComplete
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\VnextTestUnit.pdb
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\AutoMapper.dll
-C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\Castle.Core.dll
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\Moq.dll
-C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\xunit.abstractions.dll
-C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\xunit.core.dll
-C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\VNext.BienEtreAuTravail.BLL.dll
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\bin\Debug\netcoreapp3.1\VNext.BienEtreAuTravail.BLL.pdb
 C:\Users\malik\source\repos\VNext\VNext.BienEtreAuTravail\VnextTestUnit\obj\Debug\netcoreapp3.1\VnextTestUnit.dll

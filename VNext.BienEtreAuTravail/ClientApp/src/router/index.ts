@@ -17,8 +17,16 @@ const routes = [
         path: '/users',
         name: 'users',
         component:Users,
+        
       
     },
+    {
+      path: '/QuotesList',
+      name: 'ManageQuotes',
+      component: () => import(/* webpackChunkName: "about" */ '../views/ManageQuotes.vue'),
+      
+    
+  },
     {
       path: '/Quotes',
       name: 'quotes',
@@ -28,6 +36,7 @@ const routes = [
         path: '/Mood',
         name: 'mood',
         component: () => import(/* webpackChunkName: "about" */ '../views/Mood.vue'),
+        
       
     },
     {
@@ -48,6 +57,6 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-});
-
+  
+}); 
 export default router;

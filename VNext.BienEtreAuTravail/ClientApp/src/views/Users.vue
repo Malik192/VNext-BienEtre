@@ -1,14 +1,11 @@
 <template >
-
   <div class="App">
     <h1 class="subheading grey--text">Team members</h1>
     <v-container class="my-5">
       <v-content>
-    
         <v-layout row wrap>
           <v-flex xs12 sm6 md4 lg3 v-for="(post,i) in posts" v-model="posts" v-bind:key="i">
             <v-card flat class="text-xs-center ma-3" elevation="5" v-bind:key="componentKey">
-              {{componentKey}}
               <v-card-actions>
                 <v-responsive class="pt-4">
                   <v-avatar size="100">
@@ -20,10 +17,12 @@
                   <v-icon medium left color="#1DB954">cloud_upload</v-icon>
                 </v-btn>
               </v-card-actions>
-              
+
               <v-card-text>
-                
-                <div class="subheading">{{ post.Pseudo }} + {{i}}</div>
+                <div class="subheading">
+                  {{ post.Pseudo }} +
+                  {{post.IdEmployee}}
+                </div>
               </v-card-text>
 
               <v-card-actions>
@@ -32,7 +31,7 @@
                   <span>Contacter</span>
                 </v-btn>
                 <v-spacer></v-spacer>
-                <v-dialog v-model="dialog" ref="popup" persistent max-width="600px">
+                <v-dialog v-model="dialog" persistent max-width="600px">
                   <template v-slot:activator="{ on }">
                     <v-btn
                       text
@@ -59,7 +58,6 @@
                               color="#4d8c05"
                               height="40"
                               name="login"
-                              prepend-icon="person"
                               type="text"
                             ></v-text-field>
                           </v-col>
@@ -72,12 +70,10 @@
                               :type="show1 ? 'text' : 'password'"
                               color="#4d8c05"
                               height="40"
-                              prepend-icon="lock"
                               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                               @click:append="show1 = !show1"
                             ></v-text-field>
                           </v-col>
-
                           <v-col cols="12" sm="6">
                             <v-autocomplete></v-autocomplete>
                           </v-col>
@@ -90,7 +86,7 @@
                       <v-btn color="#6DB041" text @click="dialog = false">
                         <v-icon large right>cancel</v-icon>
                       </v-btn>
-                      <v-btn color="#6DB041" text @click="save(post)">
+                      <v-btn color="#6DB041" text @click="saveUser(post,post.IdEmployee)">
                         <v-icon large right>done</v-icon>
                       </v-btn>
                     </v-card-actions>
@@ -101,7 +97,7 @@
                   text
                   color="grey"
                   style="margin-left:0px ;min-width:0px"
-                  @click="supprimer(post, i)"
+                  @click="deleteUser(post, i)"
                 >
                   <v-icon medium left color="#1DB954">delete_forever</v-icon>
                 </v-btn>
@@ -122,112 +118,4 @@
 </template>
 
 <script src="./Users.ts"  lang="ts">
-import Vue from "vue";
-//import {repositoryFactory} from '@/repositories/RepositoryFactory'
-//var PostsRepository=repositoryFactory.get('users')
-import axios from "axios"; 
-
-
-
-export default Vue.extend({
-  
-  name: "App",
-  
-  data() {
-    return {
-      id: 0,
-     posts:[],
-      errors: [],
-      url: `https://localhost:44380/api/User`,
-      login: "",
-      password: "",
-      componentKey: 0, 
-      
-    
-      dialog: false,
-      show1: false,
-      rules: {
-        required: (value: any) => !!value || "Champ requis.",
-        min: (v: string | any[]) => v.length >= 5 || "Min 5 characters"
-      },
-      text: "",
-
-      snackbar: false
-    };
-  },
-  
-  /*
- mounted(){
- axios
-        .get(this.url)
-        .then(response => {
-          this.posts = response.data;
-        })
-        .catch(e => {
-          this.errors.push();
-        });
- },
- */
-updated(){
-this.posts= this.$store.getters
-},
-  watch: {
-    componentKey: function() {
-      axios
-        .get(this.url)
-        .then(response => {
-          this.posts = response.data;
-        })
-        .catch(e => {
-          this.errors.push();
-        });
-    }
-  },
-
-  methods: {
-    openDialog(value: any) {
-      this.id = value.IdEmployee;
-      console.log(value);
-    },
-    save: function(value: any) {
-      //      this.$emit(`update:${key}`, value);
-      axios
-        .put(`https://localhost:44380/api/User/${value.IdEmployee}`, {
-          IdEmployee: this.id,
-          Pseudo: this.login,
-          Password: this.password
-        })
-        .then(resp => {
-          this.componentKey++;
-          this.dialog = false;
-          this.text = "Modification enregistrée ";
-          this.snackbar = true; 
-          //    resolve(resp)
-        }) 
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
-
-    supprimer: function(value: any, i: number) {
-      //      this.$emit(`update:${key}`, value);
-
-      axios
-        .delete(`https://localhost:44380/api/User/${value.IdEmployee}`)
-        .then(resp => {
-          this.componentKey++;
-          this.text = "Utilisateur " + value.Pseudo + " supprimé";
-
-          this.snackbar = true;
-          console.log(i);
-
-          //    resolve(resp)
-        })
-
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  }
-});
 </script>

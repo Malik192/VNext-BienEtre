@@ -1,23 +1,34 @@
 import { GetterTree } from 'vuex';
 import { ProfileState } from './types';
+import { Quotes } from "../types/Quotes";
 import { RootState } from './types';
 import Token from '@/views/Mood';
 
 export const getters: GetterTree<ProfileState, RootState> = {
-    userList(state): user  {
-     
-        const { user } = state;
-     //   const firstName = (user && user.IdEmployee) || '';
-       // const lastName = (user && user.Pseudo) || '';
-      //  console.log("Users ",state.user)
-        return state.user;
+  userList(state): any {
+
+  //  const { user } = state;
+
+    return state.user;
+  },
+
+  userValue(state): any {
+
+    //  const { user } = state;
+  
+      return state.Pseudo;
     },
-    Token(state): string  {
-     
-        const { user } = state;
-     //   const firstName = (user && user.IdEmployee) || '';
-       // const lastName = (user && user.Pseudo) || '';
-      //  console.log("Users ",state.user)
-        return state.Token;
-    }
+  
+  quotesList(state): any {
+
+  //  const { quotes } = state;
+
+    return state.quotes;
+  },
+  TokenValue(state): boolean {
+
+    const { user } = state;
+
+    return state.IsConnected;
+  }
 };

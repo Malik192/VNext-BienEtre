@@ -71,9 +71,9 @@ namespace VNext.BienEtreAuTravail.BLL.Services
             return new ClaimsPrincipal(new ClaimsIdentity(claims, authScheme));
         }
 
-        public void UpdateUser(Employee value)
+        public IEnumerable<Employee> UpdateUser(Employee value)
         {
-            _userRepository.UpdateUser(value);
+            return  _userRepository.UpdateUser(value);
         }
         public IEnumerable<Employee> DeleteEmp(int person) {
             return _userRepository.DeleteEmp(person);

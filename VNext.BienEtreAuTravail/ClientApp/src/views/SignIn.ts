@@ -6,50 +6,63 @@ import Snackbar from "../components/Snackbar.vue";
 
 import { State, Action, Getter } from 'vuex-class';
 import Component from 'vue-class-component';
-import { ProfileState, User } from '../store/profile/types';
+import {  Watch } from 'vue-property-decorator'
+import { ProfileState } from '../store/profile/types';
+import { User } from "../store/types/User";
 const namespace: string = 'profile';
 @Component
-export  class Token extends Vue {
-    @State('profile')   profile!: ProfileState;
-    @Action('SetToken', { namespace }) SetToken: any;
-    @Getter('token', { namespace }) token!: string;
-    async AddToken(x: string){
-      //   console.log("je suis la",x )
-   /*  await    this.$store
+export default class SignIN extends Vue {
+  @State('profile') profile!: ProfileState;
+  @Action('SetToken', { namespace }) SetToken: any;
+  @Getter('TokenValue', { namespace }) Isconnected!: boolean;
+  @Getter('userValue', { namespace }) username!: string;
+  data() {
+    return {
+      login: "",
+      password: "",
+      cook: "",
+      cookieName: "Vnext",
+      show1: false,
+      text: "",
+      snackbar: false,
+      rules: {
+        required: (value: any) => !!value || "Champ requis.",
+        min: (v: string | any[]) => v.length >= 5 || "Min 5 characters"
+      }
 
-         .dispatch(this.SetToken,  x)*/
-    await   this.SetToken(x)
-       // return this.token ;
     };
-    
-
- 
-   }
-
-export default Vue.extend({
-  data: () => ({
-    login: "",
-    password: "",
-    cook: "",
-    cookieName: "Vnext",
-    show1: false,
-    text: "",
-    snackbar: false,
-    rules: {
-      required: (value: any) => !!value || "Champ requis.",
-      min: (v: string | any[]) => v.length >= 5 || "Min 5 characters"
-    },
-    
-  }),
-  components: {
-    Snackbar
-  },
-  methods: {
-      
-  async   Authentification() {
-        var p = new Token(); 
-        p.AddToken(this.login)
-       },
   }
-});
-/* tslint:disable */
+ 
+  @Watch('$route', { immediate: true, deep: true })
+  onPropertyChanged() {
+
+    this.$data.text=this.$route.params.text;
+    this.$data.snackbar=this.$route.params.snackbar;
+
+  }
+  async Authentification(login: string, password: string) {
+    const formData = {
+
+      login: login,
+
+      password: password
+
+    };
+    await this.SetToken(formData)
+
+    if (this.Isconnected != false) {
+      if (this.username == "admin") {
+        this.$router.push({ name: 'users', params: { text: "Bienvenue dans la partie administrateur Mood@work!", snackbar:'true' } })    
+      }    
+      else{
+
+        this.$router.push({ name: 'mood', params: { text: "Bienvenue a toi dans Mood@work!", snackbar:'true' } })
+    
+      }}
+    else
+      this.$router.push('/')
+  };
+
+
+
+}

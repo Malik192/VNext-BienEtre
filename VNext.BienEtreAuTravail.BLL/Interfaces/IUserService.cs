@@ -8,7 +8,7 @@ namespace VNext.BienEtreAuTravail.BLL.Interfaces
 
     {
          IEnumerable<Employee> GetUsers();
-        void UpdateUser(Employee value);
+        IEnumerable<Employee> UpdateUser(Employee value);
         void AddUser(Employee user);
      //   IEnumerable<EmployeeDTO> GetAllUsers();
         IEnumerable<Employee> GetAllUsers();

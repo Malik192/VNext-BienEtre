@@ -1,6 +1,6 @@
 <template>
-  <v-container  >
-    <v-content>
+  <v-container>
+    <v-content> 
       <p
         class="font-weight-black text-center text"
         color="#B2D3A3"
@@ -31,35 +31,19 @@
         </v-card>
       </v-layout>
     </v-content>
+ <v-snackbar v-model="snackbar">
+            {{ text }}
+            <v-btn color="#1DB954" text @click="snackbar = false">
+              <v-icon medium right>cancel</v-icon>
+            </v-btn>
+          </v-snackbar>   
   </v-container>
+
 </template>
 <style>
 .text {
   color: #4d8c05;
 }
 </style>
-<script   lang="ts">
-/* tslint:disable */
-import Vue from "vue";
-import axios from "axios";
-import Router from "vue-router";
-import router from "../router"; 
-import VueCookies from "vue-cookies";
-export default Vue.extend({
-  data: () => ({
-    login: "",
-    password: "",
-  }),
-computed: { 
-    Tokenvalue() {
-
-      return   this.$cookies.get("Vnext");
-
-    },
-  },
-  methods: {
-    
-  }
-});
-/* tslint:disable */
+<script src='./Mood.ts'   lang="ts">
 </script>

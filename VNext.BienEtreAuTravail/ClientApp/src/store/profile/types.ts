@@ -1,15 +1,12 @@
-export interface User {
- 
-    
-    Pseudo: string;
-    IdEmp: number;
- 
-    IdEmployee: number;
-  };
+import { User } from '../types/User';
+import { Quotes } from '../types/Quotes';
+
 
 export interface ProfileState {
     user?: User;
-     Token:string;
+    quotes?:Quotes;
+    IsConnected:boolean;
+     Pseudo: string;
 
 
     error: boolean;

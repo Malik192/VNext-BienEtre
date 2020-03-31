@@ -94,10 +94,11 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
 
         // PUT: api/UserController/5
         [HttpPut("{id}")] 
-        public void Put([FromBody] Employee value)
+        public IEnumerable<EmployeeDTO> Put([FromBody] Employee value)
         {
-           
-            _userService.UpdateUser(value);
+            var employee = _userService.UpdateUser(value);
+            return MapEmp(employee);
+
         }
 
         // DELETE: api/UserController/5

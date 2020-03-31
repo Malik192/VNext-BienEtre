@@ -1,14 +1,6 @@
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-     data() {
-    return {
-   
-      
-      text: "",
-
-      snackbar: false
-    };
-  },
-})
-</script>
+<v-snackbar v-model="snackbar">
+            {{ text }}
+            <v-btn color="#1DB954" text @click="snackbar = false">
+              <v-icon medium right>cancel</v-icon>
+            </v-btn>
+          </v-snackbar>

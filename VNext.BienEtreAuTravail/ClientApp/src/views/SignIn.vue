@@ -42,7 +42,7 @@
           </v-card-text>
 
           <v-card-actions class="justify-center">
-            <v-btn small color="#6DB041" dark rounded @click="Authentification">
+            <v-btn small color="#6DB041" dark rounded @click="Authentification(login,password)">
               <span>Valider</span>
               <v-icon small right>done</v-icon>
             </v-btn>
@@ -72,51 +72,4 @@
 }
 </style>
 <script src="./SignIn"  lang="ts">
-
-/* tslint:disable */
-
-import Vue from "vue";
-import axios from "axios";
-import Router from "vue-router";
-import router from "../router";
-import Token from "./SignIn";
-import Snackbar from "../components/Snackbar.vue"; 
-
-export default Vue.extend({
-  
-  data: () => ({
-    login: "",
-    password: "",
-    cook: "",
-    cookieName: "Vnext",
-    show1: false,
-    text: "",
-    snackbar: false,
-    rules: {
-      required: (value: any) => !!value || "Champ requis.",
-      min: (v: string | any[]) => v.length >= 5 || "Min 5 characters"
-    }
-  }),
-  components: {
-    Snackbar,
-    
-  },
-  
-  methods: {
-    async Authentification() {
-   
-
-      //   await this.$store.dispatch("SetToken",this.login)
-      //await p.AddToken();
-    }
-  }
-})
- 
-/*
-  methods: {
-    
-  }
-});
-*/
-/* tslint:disable */
 </script>

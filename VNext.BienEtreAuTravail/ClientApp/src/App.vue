@@ -12,13 +12,15 @@
 <script lang="ts">
 /* tslint:disable */
 import Vue from "vue";
-import Navbar from "./components/Navbar";
+import Navbar from "@/components/Navbar.vue";
+import QuoteDialog from "@/components/QuoteDialog.vue";
 
 export default ({
   name: "App",
 
   components: {
-    Navbar
+    Navbar,
+    QuoteDialog
   }
 });
 /* tslint:disable */

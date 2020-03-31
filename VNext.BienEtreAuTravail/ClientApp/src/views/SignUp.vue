@@ -2,14 +2,15 @@
   <v-container>
     <v-content>
       <v-layout justify-center>
-        <v-card color="#B2D3A3" flat shaped elevation="12" height="auto">
-          <v-toolbar color="#B2D3A3" flat>
+        <v-card color="#B2D3A3"  shaped elevation="12" height="auto">
+             <v-toolbar color="#B2D3A3" flat>
             <v-spacer></v-spacer>
             <v-toolbar-title>
               <span class="title">S’inscrire</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
+        
 
           <v-divider></v-divider>
 
@@ -17,7 +18,6 @@
             <v-col>
               <v-select
                 :items="items"
-                flat
                 height="40"
                 label="Departement"
                 name="item"
@@ -53,7 +53,7 @@
           </v-card-text>
 
           <v-card-actions class="justify-center">
-            <v-btn small flat color="#6DB041" dark rounded @click="logine">
+            <v-btn small  color="#6DB041" dark rounded @click="logine">
               <span>Valider</span>
               <v-icon small right>done</v-icon>
             </v-btn>

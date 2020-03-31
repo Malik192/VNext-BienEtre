@@ -7,8 +7,8 @@
     <div class="container page">
       <div class="row">
          <v-row justify="center">
-  </v-row>
-{{Tokenvalue}}
+  </v-row> 
+  
           <SignIn ></SignIn>
            
         <router-view >
@@ -22,6 +22,8 @@
 
 <script >
 
+
+
 // @ is an alias to /src 
 import SignIn from '@/views/SignIn.vue' 
 
@@ -34,25 +36,16 @@ export default {
   },
    data() {
     return {
-   
-      
-      text: "",
+  
 
-      snackbar: false
     };
   },
-  computed: {
-
-    Tokenvalue() {
-
-      return   this.$cookies.get("Vnext");
-
-    },
-
+  
     
-  },
 
 
+
+  
 };
 
 </script>

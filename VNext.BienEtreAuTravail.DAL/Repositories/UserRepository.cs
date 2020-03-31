@@ -41,7 +41,7 @@ namespace VNext.BienEtreAuTravail.DAL.Repositories
 
         }
 
-        public void UpdateUser(Employee value)
+        public IEnumerable<Employee> UpdateUser(Employee value)
         {
             using (var context = new WorkContext())
             {
@@ -49,7 +49,8 @@ namespace VNext.BienEtreAuTravail.DAL.Repositories
                 user.Pseudo = value.Pseudo;
                 user.Password = value.Password;
                 context.SaveChanges(); 
-            } 
+            }
+            return GetAllUsers();
         } 
        
         public IEnumerable<Employee> GetAllUsers()
