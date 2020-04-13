@@ -4,7 +4,7 @@
     <v-container class="my-5">
       <v-content>
         <v-layout row wrap>
-          <v-flex xs12 sm6 md4 lg3 v-for="(post,i) in posts" v-model="posts" v-bind:key="i">
+          <v-flex xs12 sm6 md4 lg4 v-for="(post,i) in posts" v-model="posts" v-bind:key="i">
             <v-card flat class="text-xs-center ma-3" elevation="5" v-bind:key="componentKey">
               <v-card-actions>
                 <v-responsive class="pt-4">
@@ -37,7 +37,7 @@
                       text
                       color="grey"
                       style="margin-left:0px ; padding:0 0px"
-                      @click="openDialog(post)"
+                      @click="openDialog(post.IdEmployee)"
                       v-on="on"
                     >
                       <v-icon medium left color="#1DB954">edit</v-icon>
@@ -86,7 +86,7 @@
                       <v-btn color="#6DB041" text @click="dialog = false">
                         <v-icon large right>cancel</v-icon>
                       </v-btn>
-                      <v-btn color="#6DB041" text @click="saveUser(post,post.IdEmployee)">
+                      <v-btn color="#6DB041" text @click="saveUser(post)">
                         <v-icon large right>done</v-icon>
                       </v-btn>
                     </v-card-actions>
@@ -116,6 +116,7 @@
     </v-container>
   </div>
 </template>
+
 
 <script src="./Users.ts"  lang="ts">
 </script>

@@ -9,6 +9,7 @@ import { RootState } from './types';
 export const state: ProfileState = {
     user: undefined,
     IsConnected: false,
+    IsAdmin:false,
     Pseudo:"",
     quotes:undefined,
     error: false

@@ -10,22 +10,28 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
-        
-
+        {{it}}
+{{items}}
           <v-divider></v-divider>
-
+           
           <v-card-text>
             <v-col>
+      
               <v-select
-                :items="items"
+                :items="items" 
+                value="departement"
                 height="40"
                 label="Departement"
-                name="item"
+                name="departement"
                 color="#4d8c05"
+               @change="onChange($event)"
                 prepend-icon="group"
                 :menu-props="{ top: true, offsetY: true }"
-              ></v-select>
+              >
+              </v-select>
             </v-col>
+        
+      
 
             <v-text-field
               label="Pseudo"
@@ -78,21 +84,59 @@ import VueCookies from "vue-cookies";
 
 export default Vue.extend({
   data: () => ({
-    items: ["RH", "UX", "Dev", "Autre"],
+    items: [],
+    it:[],
     login: "",
     password: "",
+    departement:"",
     show1: false,
+    id:0,
     rules: {
       required: (value: any) => !!value || "Champ requis.",
       min: (v: string | any[]) => v.length >= 5 || "Min 5 characters"
     }
   }),
+    
+  mounted(){
+     
+      axios
+        .get("https://localhost:44380/api/dep")
+        .then(resp => {
+          resp.data.forEach(element => {
+            this.it.push({id: element.IdDepartement, departement: element.NomDepartement})
+          });
+          
+       this.it.forEach(element => {
+         this.items.push(element.departement)
+         
+       });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    
+  },
+
   methods: {
+    onChange(event:string) {
+      this.departement=event
+      this.it.forEach(element => {
+        if (element.departement==event) {
+          this.id=element.id
+          
+        }
+      });
+
+        },
+ 
     async logine() {
+      console.log(this.departement)
       axios
         .post("https://localhost:44380/api/User", {
           Pseudo: this.login,
-          Password: this.password
+          Password: this.password,
+          IdDepartement:this.id
+          
         })
         .then(resp => {
           this.$router.push("/");

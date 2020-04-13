@@ -24,6 +24,18 @@ namespace VNext.BienEtreAuTravail.DAL.Repositories
 
 
         }
+        public IEnumerable<Departement> GetDepartment()
+        {
+            using (var connection = GetConnection())
+            {
+                var context = new WorkContext();
+
+                return context.Departement;
+
+            }
+
+
+        }
         public void AddUser(Employee nom)
         {
 
@@ -40,6 +52,24 @@ namespace VNext.BienEtreAuTravail.DAL.Repositories
 
 
         }
+
+          public void AddDepartment(Departement departement)
+        {
+
+
+            using (var context = new WorkContext())
+            {
+                
+
+                context.Departement.Add(departement);
+
+                context.SaveChanges();
+            }
+
+
+
+        }
+
 
         public IEnumerable<Employee> UpdateUser(Employee value)
         {

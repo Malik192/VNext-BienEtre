@@ -37,7 +37,14 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
             return MapEmp(employee);
 
         }
-        
+
+        [HttpGet("/api/Dep")]
+        public IEnumerable<Departement> GetDepartment()
+        {
+
+          return _userService.GetDepartment();
+        }
+
         // GET: api/UserController/5
         [HttpGet("{id}", Name = "Get")]
         public Employee Get(int id)
@@ -50,10 +57,16 @@ namespace VNext.BienEtreAuTravail.Web.Controllers
         public void Post([FromBody] Employee value)
         {
 
-            _userService.AddUser(value);
+              _userService.AddUser(value);
+        }
+        [HttpPost("/api/Dep")]
+        public void AddDepartment([FromBody] Departement value)
+        {
+
+            _userService.AddDepartment(value);
         }
 
-       
+
         [HttpPost("/api/Auth")]
         [EnableCors]
 

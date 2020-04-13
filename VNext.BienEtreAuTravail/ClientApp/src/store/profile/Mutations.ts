@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
 import { ProfileState } from './types';
-import { Quotes } from "../types/Quotes";
+import { Quotes } from "../types/Quote";
 import { User } from "../types/User";
 
 export const mutations: MutationTree<ProfileState> = {
@@ -9,15 +9,17 @@ export const mutations: MutationTree<ProfileState> = {
         state.user = payload;
          
     },
-    Quotes(state, payload: Quotes) {
+    QuotesLoaded(state, payload: Quotes) {
         state.error = false;
         state.quotes = payload;
          
     },
-    logoutUser(state, payload: User) {
+    logoutUser(state) {
         state.error = false;
         state.IsConnected = false;
         state.Pseudo="";
+        state.quotes=undefined;
+        state.user=undefined;
          
     },
     profileError(state) {
@@ -25,22 +27,11 @@ export const mutations: MutationTree<ProfileState> = {
         state.user = undefined;
         
     }, 
-    tokenSet(state, payload: string) { 
-        if (payload) {
-            state.error = false;
-            state.IsConnected =true;
-         
-        }
-       else  {
-
+   
+    userPseudo(state, payload) {
         state.error = false;
-        state.IsConnected = false;
- 
-       }
-    },
-    userPseudo(state, payload: string) {
-        state.error = false;
-        state.Pseudo = payload;
-
+        state.Pseudo = payload.Pseudo;
+        state.IsAdmin=payload.IsAdmin;      
+        state.IsConnected=payload.IsConnected;
     },
 };

@@ -9,8 +9,8 @@
         <v-card elevation="0">
           <v-container fluid grid-list-lg>
             <v-layout row wrap>
-              <v-flex xs12>
-                <v-card id="citation1" color="#B2D3A3" class="white--text"  >
+              <v-flex xs12  id="citation1"   @click="tests($event)"> 
+                <v-card color="#B2D3A3" class="white--text"    >
                   <v-card-title primary-title>
                     <div>
                       <span
@@ -22,8 +22,8 @@
                 </v-card>
              
               </v-flex>
-              <v-flex xs12  :class="{'formfield': isLoading, 'is-red': !isLoading }"> 
-                <v-card id="citation2"    class=" white--text"  @click="tests" >
+              <v-flex xs12 id="citation2"    @click="tests($event)"> 
+                <v-card    color="#B2D3A3"   class=" white--text"   >
                   <v-card-title primary-title>
                     <div>
                       <span
@@ -33,8 +33,8 @@
                   </v-card-title>
                 </v-card>
               </v-flex>
-              <v-flex xs12 >
-                <v-card id="citation3" color="#B2D3A3" class="white--text">
+                <v-flex xs12 id="citation3"     @click="tests($event)"> 
+                <v-card  color="#B2D3A3" class="white--text"   >
                   <v-card-title primary-title>
                     <div>
                       <span
@@ -86,6 +86,7 @@ export default Vue.extend({
   data: () => ({
     max: 140,
     text: "",
+    selected:"",
     isLoading:false
   }),
   methods:{
@@ -93,8 +94,20 @@ export default Vue.extend({
        
        this.$router.push({ name: 'home', params: { text: "Merci pour ta participation, a bientot dans Mood@work!", snackbar:'true' } })
     },
-     tests(){ 
-            this.isLoading = !this.isLoading;
+     tests(event : any){
+       var target = event.currentTarget; 
+      if ( target && this.isLoading) {
+       target.style.backgroundColor = 'pink';
+       this.selected=target.id
+       this.isLoading=!this.isLoading
+       
+       console.log(this.selected)
+       }   
+       else{
+          target.style.backgroundColor = '';
+          this.isLoading=!this.isLoading
+       }
+           
        }
   }
 });

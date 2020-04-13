@@ -11,6 +11,7 @@ const namespace: string = 'profile';
 @Component
 export default class UserDetail extends Vue {
 
+
   @State('profile') profile!: ProfileState;
   @Action('GetUsers', { namespace }) Get: any;
   @Action('UpdateUsers', { namespace }) Update: any;
@@ -30,7 +31,6 @@ export default class UserDetail extends Vue {
       posts: [],
       update: [],
       componentKey: 0,
-      url: `https://localhost:44380/api/User`,
       dialog: false,
       show1: false,
       rules: {
@@ -38,31 +38,49 @@ export default class UserDetail extends Vue {
         min: (v: string | any[]) => v.length >= 5 || "Min 5 characters"
       },
       text: "",
-
       snackbar: false
     };
   }
+  //watcher le changement de route et prendre les infos pour la snackbar ...
   @Watch('$route', { immediate: true, deep: true })
   onPropertyChangedSnackbar() {
 
-    this.$data.text=this.$route.params.text;
-    this.$data.snackbar=this.$route.params.snackbar;
+    this.$data.text = this.$route.params.text;
+    this.$data.snackbar = this.$route.params.snackbar;
 
   }
-  async mounted() {
-    await this.Get();
-    this.$data.posts = this.Getusers
-
-  };
-
-  openDialog(value: any) {
-    this.$data.id = value.IdEmployee;
-  }
+  /**
+   * @description:   watcher le changement d'une variable pour rafraichir le contenu ...
+   */
   @Watch('componentKey', { immediate: true, deep: true })
   onPropertyChanged() {
     this.$data.posts = this.Getusers
   }
-  async saveUser(value: any) {
+  /**
+   * @description:(mounted): methode executée au montage de l'instance vue sur le dom
+   * Get appel la methode Get users dans action(Vuex)
+   */
+
+  async mounted() {
+
+    await this.Get();
+    this.$data.posts = this.Getusers
+
+  };
+  /**
+   * @description: recuperation de l'id avant la modification de l'utilisateur
+   * @param value 
+   */
+
+  openDialog(value: number) {
+    this.$data.id = value;
+  }
+
+  /**
+   * 
+   * @param value 
+   */
+  async saveUser(value: User) {
     const formData = {
       id: value.IdEmployee,
       IdEmployee: this.$data.id,
@@ -70,17 +88,33 @@ export default class UserDetail extends Vue {
       Password: this.$data.password
 
     };
+    var state = "modifié"
     await this.Update(formData)
     this.$data.dialog = false;
-    this.$data.componentKey++;
+    this.routine(formData.Pseudo, state);
 
-    this.$data.text = "Modification enregistrée ";
-    this.$data.snackbar = true;
+
   };
-  async  deleteUser(value: any, i: number) {
-    await this.Delete(value)
+
+  /**
+   * @description: appel la methode deleteUser users dans action(Vuex) ligne 17
+   * @param user 
+   */
+  public async  deleteUser(user: User): Promise<void> {
+    var state = "supprimé"
+    await this.Delete(user)
+    this.routine(user.Pseudo, state);
+
+  }
+  /**
+   * @description: methode routiniere qui incremente la valriable observée et permet l'affichage de la snackbar
+   * @param pseudo 
+   * @param state 
+   */
+  public routine(pseudo: string, state: string): void {
     this.$data.componentKey++;
-    this.$data.text = "Utilisateur " + value.Pseudo + " supprimé";
     this.$data.snackbar = true;
+    this.$data.text = "Utilisateur " + pseudo + " " + state;
+
   }
 }

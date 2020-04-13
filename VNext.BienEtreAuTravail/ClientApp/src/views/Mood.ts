@@ -7,34 +7,36 @@ import { User } from "../store/types/User";
 import Quote from './Quotes';
 const namespace: string = 'profile';
 @Component
-export default class Token extends Vue {
-    @State('profile')   profile!: ProfileState;
-    
+export default class Mood extends Vue {
+  @State('profile') profile!: ProfileState;
+
   @Action('GetQuotes', { namespace }) Get: any;
-  
+
   @Getter('quotesList', { namespace }) Getquotes!: Array<Quote>[];
-    data() {
-      return {
-        login: "", 
-        password: "",
-        componentKey: 0, 
-        dialog: false,
-        show1: false,
-        text: "",
-        snackbar:false
-      };
+  data() {
+    return {
+      login: "",
+      password: "",
+      componentKey: 0,
+      dialog: false,
+      show1: false,
+      text: "",
+      snackbar: false
     };
-    async mounted() {
-      await this.Get(); 
-  
-    };
-    @Watch('$route', { immediate: true, deep: true })
-  onPropertyChangedSnackbar() :void {
-    this.$data.text=this.$route.params.text;
-    this.$data.snackbar=this.$route.params.snackbar;
+  };
+  async mounted() {
+    //appel de la methode GetQuotes dans vuex actions ligne 13
+    await this.Get();
+
+  };
+  //watcher le changement de route et prendre les infos pour la snackbar ...
+  @Watch('$route', { immediate: true, deep: true })
+  onPropertyChangedSnackbar(): void {
+    this.$data.text = this.$route.params.text;
+    this.$data.snackbar = this.$route.params.snackbar;
 
 
   }
 
 
-   }
+}

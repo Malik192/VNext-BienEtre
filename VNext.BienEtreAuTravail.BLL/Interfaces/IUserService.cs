@@ -8,9 +8,11 @@ namespace VNext.BienEtreAuTravail.BLL.Interfaces
 
     {
          IEnumerable<Employee> GetUsers();
+        IEnumerable<Departement> GetDepartment();
         IEnumerable<Employee> UpdateUser(Employee value);
         void AddUser(Employee user);
-     //   IEnumerable<EmployeeDTO> GetAllUsers();
+        void AddDepartment(Departement departement);
+        //   IEnumerable<EmployeeDTO> GetAllUsers();
         IEnumerable<Employee> GetAllUsers();
         bool Authentification(string pseudo, string password);
 

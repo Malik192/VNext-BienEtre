@@ -10,8 +10,8 @@ using VNext.BienEtreAuTravail.DAL.Context;
 namespace VNext.BienEtreAuTravail.DAL.Migrations
 {
     [DbContext(typeof(WorkContext))]
-    [Migration("20200219180130_BienEtre")]
-    partial class BienEtre
+    [Migration("20200407130243_VnextMood")]
+    partial class VnextMood
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,24 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.DTO.EmployeeDTO", b =>
+                {
+                    b.Property<int>("IdEmployee")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Pseudo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdEmployee");
+
+                    b.ToTable("EmployeesDto");
+                });
 
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.Commentaire", b =>
                 {
@@ -82,7 +100,10 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdDepartement")
+                    b.Property<int?>("DepartementIdDepartement")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdDepartement")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDepartmentManager")
@@ -99,9 +120,7 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
 
                     b.HasKey("IdEmployee");
 
-                    b.HasIndex("IdDepartement")
-                        .IsUnique()
-                        .HasFilter("[IdDepartement] IS NOT NULL");
+                    b.HasIndex("DepartementIdDepartement");
 
                     b.ToTable("Employees");
                 });
@@ -153,9 +172,9 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
 
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.Employee", b =>
                 {
-                    b.HasOne("VNext.BienEtreAuTravail.DAL.Models.Database.Departement", "Departement")
-                        .WithOne("Employee")
-                        .HasForeignKey("VNext.BienEtreAuTravail.DAL.Models.Database.Employee", "IdDepartement");
+                    b.HasOne("VNext.BienEtreAuTravail.DAL.Models.Database.Departement", null)
+                        .WithMany("Employee")
+                        .HasForeignKey("DepartementIdDepartement");
                 });
 
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.HumeurEmployee", b =>

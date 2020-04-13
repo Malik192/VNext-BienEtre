@@ -7,8 +7,10 @@ namespace VNext.BienEtreAuTravail.DAL.Interfaces
     {
         
            IEnumerable<Employee> GetUsers();
+           IEnumerable<Departement> GetDepartment();
            void AddUser(Employee nom);
-           IEnumerable<Employee> UpdateUser(Employee value);
+           void AddDepartment(Departement departement);
+        IEnumerable<Employee> UpdateUser(Employee value);
            IEnumerable<Employee> GetAllUsers();
            IEnumerable<Employee> DeleteEmp(int person);
           

@@ -15,8 +15,8 @@ namespace VNext.BienEtreAuTravail.DAL.Models.Database
         public bool IsDepartmentManager { get; set; }
         public DateTime Created_at { get; set; }
         public DateTime Updated_at { get; set; }
-        public int? IdDepartement { get; set; }
-        public Departement Departement { get; set; }
+        [ForeignKey("Departement")]
+        public int IdDepartement { get; set; }
 
         public Commentaire Commentaire { get; set; }
         IList<HumeurEmployee> HumeurEmployee { get; set; }

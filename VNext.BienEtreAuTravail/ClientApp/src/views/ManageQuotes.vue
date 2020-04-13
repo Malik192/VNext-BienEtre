@@ -4,14 +4,13 @@
     <v-container class="my-5">
       <v-content>
         <v-layout row wrap>
-          <v-flex xs12 sm6 md4 lg3 v-for="(post,i) in posts" v-model="posts" v-bind:key="i">
+          <v-flex xs12 sm6 md4 lg4 v-for="(post,i) in posts" v-model="posts" v-bind:key="i">
             <v-card flat class="text-xs-center ma-3" elevation="5" v-bind:key="componentKey">
               <v-card-text>
                 <div class="subheading">
                   <B>{{ post.Groupe }}</B>
                 </div>
               </v-card-text>
-
               <v-card-text>
                 <div class="subheading">{{post.Auteur}}</div>
               </v-card-text>

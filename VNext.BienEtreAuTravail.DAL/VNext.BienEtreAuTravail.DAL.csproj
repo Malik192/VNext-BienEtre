@@ -37,6 +37,8 @@
     <Compile Remove="Migrations\20200116000223_VnextDbTab.Designer.cs" />
     <Compile Remove="Migrations\20200116000357_VnextDbTab.cs" />
     <Compile Remove="Migrations\20200116000357_VnextDbTab.Designer.cs" />
+    <Compile Remove="Migrations\20200219180130_BienEtre.cs" />
+    <Compile Remove="Migrations\20200219180130_BienEtre.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

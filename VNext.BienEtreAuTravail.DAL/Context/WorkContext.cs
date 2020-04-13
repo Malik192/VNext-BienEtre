@@ -38,10 +38,7 @@ namespace VNext.BienEtreAuTravail.DAL.Context
             modelBuilder.Entity<HumeurEmployee>()
            .HasKey(sc => new { sc.IdEmployee, sc.IdHumeur });
 
-            modelBuilder.Entity<Departement>()
-                 .HasOne(a => a.Employee)
-                 .WithOne(b => b.Departement)
-                 .HasForeignKey<Employee>(b => b.IdDepartement);
+         
         }
     }
 }

@@ -50,17 +50,16 @@ namespace VnextTestUnit
             Assert.AreEqual(2, asList.Count, "The users count is not correct");
         }
         [TestMethod]
+
         public void Test_GetUserById()
         {
           
             var user = userService.DisplayById(2);
             Assert.AreEqual("Test2", user.Pseudo, "The users count is not correct");
 
-            
-
-
-
         }
-       
+
+        
+
     }
 }

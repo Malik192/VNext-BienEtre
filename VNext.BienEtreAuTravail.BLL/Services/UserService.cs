@@ -8,6 +8,7 @@ using VNext.BienEtreAuTravail.DAL.Models.Database;
 
 namespace VNext.BienEtreAuTravail.BLL.Services
 {
+
     public class UserService : IUserService
     {
        
@@ -30,6 +31,11 @@ namespace VNext.BienEtreAuTravail.BLL.Services
                 _userRepository.AddUser(user);
             }
           
+        }
+        public void AddDepartment(Departement departement)
+        {
+             _userRepository.AddDepartment(departement);
+           
         }
         public bool Authentification(string pseudo,string password)
         {
@@ -115,7 +121,10 @@ namespace VNext.BienEtreAuTravail.BLL.Services
         {
             return _userRepository.GetUsers();
         }
-
+        public IEnumerable<Departement> GetDepartment()
+        {
+            return _userRepository.GetDepartment();
+        }
         
     }
 }

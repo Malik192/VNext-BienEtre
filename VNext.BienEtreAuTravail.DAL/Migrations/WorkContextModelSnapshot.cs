@@ -19,6 +19,24 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.DTO.EmployeeDTO", b =>
+                {
+                    b.Property<int>("IdEmployee")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Pseudo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdEmployee");
+
+                    b.ToTable("EmployeesDto");
+                });
+
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.Commentaire", b =>
                 {
                     b.Property<int>("IdCommentaire")
@@ -80,7 +98,10 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdDepartement")
+                    b.Property<int?>("DepartementIdDepartement")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdDepartement")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDepartmentManager")
@@ -97,9 +118,7 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
 
                     b.HasKey("IdEmployee");
 
-                    b.HasIndex("IdDepartement")
-                        .IsUnique()
-                        .HasFilter("[IdDepartement] IS NOT NULL");
+                    b.HasIndex("DepartementIdDepartement");
 
                     b.ToTable("Employees");
                 });
@@ -151,9 +170,9 @@ namespace VNext.BienEtreAuTravail.DAL.Migrations
 
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.Employee", b =>
                 {
-                    b.HasOne("VNext.BienEtreAuTravail.DAL.Models.Database.Departement", "Departement")
-                        .WithOne("Employee")
-                        .HasForeignKey("VNext.BienEtreAuTravail.DAL.Models.Database.Employee", "IdDepartement");
+                    b.HasOne("VNext.BienEtreAuTravail.DAL.Models.Database.Departement", null)
+                        .WithMany("Employee")
+                        .HasForeignKey("DepartementIdDepartement");
                 });
 
             modelBuilder.Entity("VNext.BienEtreAuTravail.DAL.Models.Database.HumeurEmployee", b =>
